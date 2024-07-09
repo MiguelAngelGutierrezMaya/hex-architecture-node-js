@@ -1,6 +1,7 @@
 import {envs} from './config'
 import {AppRoutes} from './presentation/routes'
 import {Server} from './presentation/server'
+import {MongoDatabase} from "./data/mongodb";
 
 (() => {
     main()
@@ -13,6 +14,10 @@ import {Server} from './presentation/server'
 
 async function main() {
     // todo: await database
+    await MongoDatabase.connect({
+        dbName: envs.MONGO_DB_NAME,
+        mongoUrl: envs.MONGO_URL
+    })
 
     // todo: init server
     await new Server({

@@ -1,3 +1,5 @@
+mongo/
+
 .env
 
 package-lock.json
