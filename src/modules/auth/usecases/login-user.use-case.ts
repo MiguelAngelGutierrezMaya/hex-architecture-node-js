@@ -1,13 +1,9 @@
 import {LoginUserDto, AuthRepository} from "../domain";
-import {CustomError} from "../../shared";
+import {CustomError, User} from "../../shared";
 
 interface UserToken {
     token: string;
-    user: {
-        id: string;
-        name: string;
-        email: string;
-    }
+    user: User
 }
 
 type SignToken = (payload: Object, duration: string) => Promise<string | null>;
@@ -39,7 +35,10 @@ export class LoginUserUseCaseImpl implements LoginUserUseCase {
             user: {
                 id: user.id,
                 name: user.name,
-                email: user.email
+                email: user.email,
+                password: '',
+                role: user.role,
+                img: user.img
             },
             token: token
         }

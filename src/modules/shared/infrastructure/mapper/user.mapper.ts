@@ -2,7 +2,7 @@ import {CustomError, User} from "../../domain";
 
 export class UserMapper {
     static userEntityFromObject(obj: { [key: string]: any }): User {
-        const {id, _id, name, email, password, roles} = obj;
+        const {id, _id, name, email, password, roles, img} = obj;
 
         if (!id && !_id) {
             throw CustomError.badRequest('User ID is required')
@@ -24,6 +24,6 @@ export class UserMapper {
             throw CustomError.badRequest('User roles is required')
         }
 
-        return new User(_id || id, name, email, password, roles);
+        return new User(_id || id, name, email, password, roles, img);
     }
 }
